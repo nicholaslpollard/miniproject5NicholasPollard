@@ -1,0 +1,35 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python caches and build output
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Test and coverage output
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Flask instance folder and local databases
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets and environment configuration
+.env
+.env.*
+.flaskenv
+*.pem
+secrets.json
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

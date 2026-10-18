@@ -1,0 +1,10 @@
+/* Custom styles for the Personal Task Tracker */
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.hero {
+    border-left: 6px solid var(--bs-primary);
+}
