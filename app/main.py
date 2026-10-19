@@ -1,10 +1,11 @@
+
 # INF601 - Advanced Programming in Python
 # Nicholas Pollard
 # Mini Project 5
 
 """General page routes for the Personal Task Tracker."""
 
-from flask import Blueprint, g, render_template
+from flask import Blueprint, g, render_template, request
 
 from .auth import login_required
 from .db import get_db
@@ -40,22 +41,43 @@ def help_page():
 @login_required
 def dashboard():
     """Display the logged-in user's tasks and progress."""
-    # Incomplete tasks first, then newest first. The id breaks ties between
-    # tasks created within the same second.
-    tasks = get_db().execute(
+    status = request.args.get("status", "all")
+
+    if status not in ("all", "active", "completed"):
+        status = "all"
+
+    # Retrieve all tasks belonging to the logged-in user.
+    # Incomplete tasks first, then newest first.
+    all_tasks = get_db().execute(
         "SELECT id, title, description, completed, created_at FROM tasks"
         " WHERE user_id = ?"
         " ORDER BY completed ASC, created_at DESC, id DESC",
         (g.user["id"],),
     ).fetchall()
 
-    completed_count = sum(1 for task in tasks if task["completed"])
+    # Calculate statistics from all tasks, regardless of filter.
+    completed_count = sum(1 for task in all_tasks if task["completed"])
+
     stats = {
-        "total": len(tasks),
+        "total": len(all_tasks),
         "completed": completed_count,
-        "remaining": len(tasks) - completed_count,
+        "remaining": len(all_tasks) - completed_count,
     }
-    return render_template("dashboard.html", tasks=tasks, stats=stats)
+
+    # Filter the tasks displayed on the dashboard.
+    if status == "active":
+        tasks = [task for task in all_tasks if not task["completed"]]
+    elif status == "completed":
+        tasks = [task for task in all_tasks if task["completed"]]
+    else:
+        tasks = all_tasks
+
+    return render_template(
+        "dashboard.html",
+        tasks=tasks,
+        stats=stats,
+        selected_filter=status,
+    )
 
 
 @bp.app_errorhandler(400)

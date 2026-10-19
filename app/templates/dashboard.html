@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}Dashboard{% endblock %}
@@ -33,6 +34,29 @@
             </div>
         </div>
     </div>
+</div>
+
+{# Task status filtering #}
+<div class="d-flex flex-wrap align-items-center gap-2 mb-4" id="taskFilters">
+    <span class="fw-semibold me-2">Filter Tasks:</span>
+
+    <a href="{{ url_for('main.dashboard') }}"
+       class="btn btn-sm {{ 'btn-primary' if selected_filter == 'all' else 'btn-outline-primary' }}"
+       {% if selected_filter == 'all' %}aria-current="page"{% endif %}>
+        All Tasks
+    </a>
+
+    <a href="{{ url_for('main.dashboard', status='active') }}"
+       class="btn btn-sm {{ 'btn-primary' if selected_filter == 'active' else 'btn-outline-primary' }}"
+       {% if selected_filter == 'active' %}aria-current="page"{% endif %}>
+        Active Tasks
+    </a>
+
+    <a href="{{ url_for('main.dashboard', status='completed') }}"
+       class="btn btn-sm {{ 'btn-primary' if selected_filter == 'completed' else 'btn-outline-primary' }}"
+       {% if selected_filter == 'completed' %}aria-current="page"{% endif %}>
+        Completed Tasks
+    </a>
 </div>
 
 {% if tasks %}
@@ -104,9 +128,19 @@
 {% else %}
 <div class="card shadow-sm text-center py-5" id="emptyState">
     <div class="card-body">
+        {% if stats.total == 0 %}
         <h2 class="h4">You have no tasks yet</h2>
         <p class="text-muted mb-4">Add your first task to start tracking what needs to get done.</p>
         <a href="{{ url_for('tasks.create') }}" class="btn btn-primary">Add Your First Task</a>
+        {% elif selected_filter == 'active' %}
+        <h2 class="h4">No active tasks</h2>
+        <p class="text-muted mb-4">All of your tasks have been completed.</p>
+        <a href="{{ url_for('main.dashboard') }}" class="btn btn-outline-primary">Show All Tasks</a>
+        {% elif selected_filter == 'completed' %}
+        <h2 class="h4">No completed tasks</h2>
+        <p class="text-muted mb-4">You have not completed any tasks yet.</p>
+        <a href="{{ url_for('main.dashboard') }}" class="btn btn-outline-primary">Show All Tasks</a>
+        {% endif %}
     </div>
 </div>
 {% endif %}
