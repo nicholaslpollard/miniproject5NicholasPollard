@@ -42,3 +42,28 @@
 .auth-card {
     border-top: 4px solid var(--bs-primary);
 }
+
+/* Dashboard task list. */
+.task-card {
+    border-left: 4px solid var(--bs-warning);
+}
+
+.task-card.task-complete {
+    border-left-color: var(--bs-success);
+    background-color: var(--bs-tertiary-bg);
+}
+
+.task-complete .task-title {
+    text-decoration: line-through;
+    color: var(--bs-secondary-color);
+}
+
+/* Keep line breaks the user typed in a description. */
+.task-description {
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.task-title {
+    overflow-wrap: anywhere;
+}

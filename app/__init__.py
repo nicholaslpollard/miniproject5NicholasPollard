@@ -48,8 +48,9 @@ def create_app(test_config=None):
     csrf.init_app(app)
 
     # Register blueprints.
-    from . import auth, main
+    from . import auth, main, tasks
     app.register_blueprint(main.bp)
     app.register_blueprint(auth.bp)
+    app.register_blueprint(tasks.bp)
 
     return app

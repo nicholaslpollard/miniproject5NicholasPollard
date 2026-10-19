@@ -4,32 +4,32 @@
 
 {% block content %}
 <h1 class="page-heading mb-3">Features</h1>
-<div class="alert alert-info" role="alert">
-    Features are being added in stages. Items marked <strong>Available</strong> work
-    today; items marked <strong>Planned</strong> are coming in a future update.
-</div>
+<p class="lead">
+    Everything below is available now.
+    {% if g.user %}
+    Head to your <a href="{{ url_for('main.dashboard') }}">dashboard</a> to get started.
+    {% else %}
+    <a href="{{ url_for('auth.register') }}">Create an account</a> to get started.
+    {% endif %}
+</p>
 
 {% set features = [
-    ("User Accounts", "Register for an account, log in, and log out. Passwords are stored securely as hashes, never as plain text.", True),
-    ("Create Tasks", "Add a task with a title and an optional description.", False),
-    ("View Your Tasks", "See a list of your own tasks. Each user's tasks are kept separate and private.", False),
-    ("Edit Tasks", "Update a task's details as plans change.", False),
-    ("Track Progress", "Mark tasks as complete or incomplete to see what still needs attention.", False),
-    ("Delete Tasks", "Remove tasks you no longer need, with a confirmation step to prevent mistakes.", False),
+    ("User Accounts", "Register for an account, log in, and log out. Passwords are stored securely as hashes, never as plain text."),
+    ("Create Tasks", "Add a task with a title of up to 120 characters and an optional description."),
+    ("View Your Tasks", "See your tasks on a personal dashboard, with unfinished tasks listed first. Each user's tasks are kept separate and private."),
+    ("Edit Tasks", "Update a task's details as plans change."),
+    ("Track Progress", "Mark tasks as complete or incomplete, and see your total, completed, and remaining counts at a glance."),
+    ("Delete Tasks", "Remove tasks you no longer need, with a confirmation step to prevent mistakes."),
 ] %}
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    {% for name, description, available in features %}
+    {% for name, description in features %}
     <div class="col">
         <div class="card h-100 shadow-sm info-card">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <h2 class="h5 card-title mb-0">{{ name }}</h2>
-                    {% if available %}
                     <span class="badge text-bg-success">Available</span>
-                    {% else %}
-                    <span class="badge text-bg-secondary">Planned</span>
-                    {% endif %}
                 </div>
                 <p class="card-text">{{ description }}</p>
             </div>

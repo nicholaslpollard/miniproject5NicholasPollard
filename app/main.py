@@ -4,9 +4,10 @@
 
 """General page routes for the Personal Task Tracker."""
 
-from flask import Blueprint, render_template
+from flask import Blueprint, g, render_template
 
 from .auth import login_required
+from .db import get_db
 
 bp = Blueprint("main", __name__)
 
@@ -38,8 +39,23 @@ def help_page():
 @bp.route("/dashboard")
 @login_required
 def dashboard():
-    """Display the logged-in user's dashboard."""
-    return render_template("dashboard.html")
+    """Display the logged-in user's tasks and progress."""
+    # Incomplete tasks first, then newest first. The id breaks ties between
+    # tasks created within the same second.
+    tasks = get_db().execute(
+        "SELECT id, title, description, completed, created_at FROM tasks"
+        " WHERE user_id = ?"
+        " ORDER BY completed ASC, created_at DESC, id DESC",
+        (g.user["id"],),
+    ).fetchall()
+
+    completed_count = sum(1 for task in tasks if task["completed"])
+    stats = {
+        "total": len(tasks),
+        "completed": completed_count,
+        "remaining": len(tasks) - completed_count,
+    }
+    return render_template("dashboard.html", tasks=tasks, stats=stats)
 
 
 @bp.app_errorhandler(400)

@@ -7,11 +7,11 @@
     <h1 class="display-5 fw-bold">Personal Task Tracker</h1>
     <p class="col-lg-8 fs-5">
         A simple web application for organizing personal to-dos and tracking
-        progress in one place. It is being built with Flask, Jinja2, SQLite, and
+        progress in one place. It is built with Flask, Jinja2, SQLite, and
         Bootstrap as part of INF601 - Advanced Programming in Python.
     </p>
     <p class="text-muted">
-        User accounts are available now. Task management is coming in the next update.
+        Add, edit, complete, and delete your own private tasks from a personal dashboard.
     </p>
     {% if g.user %}
     <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
@@ -36,8 +36,8 @@
     <div class="col-md-4">
         <div class="card h-100 shadow-sm info-card">
             <div class="card-body">
-                <h2 class="h5 card-title">Planned Features</h2>
-                <p class="card-text">See the task-management features planned for the application.</p>
+                <h2 class="h5 card-title">Features</h2>
+                <p class="card-text">See everything the Task Tracker can do for you.</p>
             </div>
             <div class="card-footer bg-transparent border-0">
                 <a href="{{ url_for('main.features') }}" class="btn btn-outline-primary">View features</a>
@@ -48,7 +48,7 @@
         <div class="card h-100 shadow-sm info-card">
             <div class="card-body">
                 <h2 class="h5 card-title">Getting Help</h2>
-                <p class="card-text">Find out how the Task Tracker will be used once it is complete.</p>
+                <p class="card-text">Learn how to create, update, and manage your tasks step by step.</p>
             </div>
             <div class="card-footer bg-transparent border-0">
                 <a href="{{ url_for('main.help_page') }}" class="btn btn-outline-primary">Get help</a>

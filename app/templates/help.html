@@ -7,10 +7,6 @@
 <p class="lead">
     This page explains how to use the Personal Task Tracker.
 </p>
-<div class="alert alert-info" role="alert">
-    Accounts are available now. Task management (steps 3 and 4) is coming in the
-    next update.
-</div>
 
 <h2 class="h4 mt-4">Getting Started</h2>
 <ol class="list-group list-group-numbered mb-4">
@@ -23,10 +19,16 @@
         to reach your personal dashboard.
     </li>
     <li class="list-group-item">
-        <span class="fw-semibold">Add tasks</span> with a title and an optional description.
+        <span class="fw-semibold">Add tasks</span> with the <em>Add Task</em> button. A title is
+        required; a description is optional.
     </li>
     <li class="list-group-item">
-        <span class="fw-semibold">Update tasks</span> by editing them or marking them complete.
+        <span class="fw-semibold">Update tasks</span> with the <em>Edit</em> button, or use
+        <em>Mark Complete</em> and <em>Mark Incomplete</em> to track progress.
+    </li>
+    <li class="list-group-item">
+        <span class="fw-semibold">Delete tasks</span> with the <em>Delete</em> button. You will be
+        asked to confirm before anything is removed.
     </li>
     <li class="list-group-item">
         <span class="fw-semibold">Log out</span> using the button in the navigation bar to end your session.
@@ -44,8 +46,8 @@
         </h3>
         <div id="faqPrivacy" class="accordion-collapse collapse" data-bs-parent="#helpFaq">
             <div class="accordion-body">
-                No. Each task will belong to a single account, and users will only be able
-                to view and manage their own tasks.
+                No. Each task belongs to a single account, and users can only view and
+                manage their own tasks.
             </div>
         </div>
     </div>
@@ -80,7 +82,7 @@
 </div>
 
 <p>
-    Want to know what is coming next? See the
+    Want an overview of everything the Task Tracker can do? See the
     <a href="{{ url_for('main.features') }}">Features</a> page.
 </p>
 {% endblock %}

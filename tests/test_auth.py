@@ -208,7 +208,7 @@ def test_dashboard_shows_username(client, auth):
     response = client.get("/dashboard")
     assert response.status_code == 200
     assert b"Welcome, alice!" in response.data
-    assert b"Task management will be added in the next development stage." in response.data
+    assert b"+ Add Task" in response.data
 
 
 def test_logged_in_user_is_redirected_from_login_and_register(client, auth):
