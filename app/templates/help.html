@@ -5,30 +5,31 @@
 {% block content %}
 <h1 class="page-heading mb-3">Help</h1>
 <p class="lead">
-    This page explains how the Personal Task Tracker will be used once its
-    features are complete.
+    This page explains how to use the Personal Task Tracker.
 </p>
 <div class="alert alert-info" role="alert">
-    Account and task features are still in development. The steps below describe
-    the intended workflow.
+    Accounts are available now. Task management (steps 3 and 4) is coming in the
+    next update.
 </div>
 
 <h2 class="h4 mt-4">Getting Started</h2>
 <ol class="list-group list-group-numbered mb-4">
     <li class="list-group-item">
-        <span class="fw-semibold">Create an account</span> with a username and password.
+        <span class="fw-semibold"><a href="{{ url_for('auth.register') }}">Create an account</a></span>
+        with a username, email address, and password of at least 8 characters.
     </li>
     <li class="list-group-item">
-        <span class="fw-semibold">Log in</span> to reach your personal task list.
+        <span class="fw-semibold"><a href="{{ url_for('auth.login') }}">Log in</a></span>
+        to reach your personal dashboard.
     </li>
     <li class="list-group-item">
-        <span class="fw-semibold">Add tasks</span> with a title, description, and due date.
+        <span class="fw-semibold">Add tasks</span> with a title and an optional description.
     </li>
     <li class="list-group-item">
         <span class="fw-semibold">Update tasks</span> by editing them or marking them complete.
     </li>
     <li class="list-group-item">
-        <span class="fw-semibold">Log out</span> when you are finished to end your session.
+        <span class="fw-semibold">Log out</span> using the button in the navigation bar to end your session.
     </li>
 </ol>
 
@@ -57,8 +58,8 @@
         </h3>
         <div id="faqPasswords" class="accordion-collapse collapse" data-bs-parent="#helpFaq">
             <div class="accordion-body">
-                Passwords will never be stored as plain text. They will be hashed before being
-                saved to the database.
+                Passwords are never stored as plain text. They are hashed before being
+                saved to the database, and only the hash is kept.
             </div>
         </div>
     </div>

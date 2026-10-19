@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-5">
+        <div class="card shadow-sm auth-card">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-3">Log In</h1>
+                <form method="post" action="{{ url_for('auth.login') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                               value="{{ username }}" required autocomplete="username" autofocus>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                               required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Log In</button>
+                </form>
+                <p class="text-center mt-3 mb-0">
+                    New here? <a href="{{ url_for('auth.register') }}">Create an account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

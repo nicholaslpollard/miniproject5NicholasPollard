@@ -19,10 +19,9 @@ PUBLIC_PAGES = [
 ]
 
 
-def nav_links(html):
-    """Return the href values of the links inside the main navigation menu."""
-    nav = re.search(r'<div class="collapse navbar-collapse" id="mainNav">(.*?)</div>',
-                    html, re.S).group(1)
+def nav_links(html, menu_id="publicNav"):
+    """Return the href values of the links inside one navigation menu."""
+    nav = re.search(rf'<ul class="[^"]*" id="{menu_id}">(.*?)</ul>', html, re.S).group(1)
     return re.findall(r'href="([^"]+)"', nav)
 
 
@@ -67,8 +66,11 @@ def test_navigation_contains_all_public_pages(client):
 
 
 def test_navigation_links_resolve(client):
-    """Every link in the navigation menu should load successfully."""
-    for link in nav_links(client.get("/").get_data(as_text=True)):
+    """Every link in both navigation menus should load successfully."""
+    html = client.get("/").get_data(as_text=True)
+    links = nav_links(html) + nav_links(html, "accountNav")
+    assert len(links) == 6
+    for link in links:
         assert client.get(link).status_code == 200
 
 

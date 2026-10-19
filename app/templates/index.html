@@ -6,14 +6,19 @@
 <div class="p-4 p-md-5 mb-4 bg-body-tertiary rounded-3 hero">
     <h1 class="display-5 fw-bold">Personal Task Tracker</h1>
     <p class="col-lg-8 fs-5">
-        A simple web application for organizing personal to-dos, deadlines, and
+        A simple web application for organizing personal to-dos and tracking
         progress in one place. It is being built with Flask, Jinja2, SQLite, and
         Bootstrap as part of INF601 - Advanced Programming in Python.
     </p>
-    <p class="text-muted mb-0">
-        The application is under active development. User accounts and task
-        management will be added in upcoming versions.
+    <p class="text-muted">
+        User accounts are available now. Task management is coming in the next update.
     </p>
+    {% if g.user %}
+    <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
+    {% else %}
+    <a href="{{ url_for('auth.register') }}" class="btn btn-primary me-2">Create an Account</a>
+    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary">Log In</a>
+    {% endif %}
 </div>
 
 <div class="row g-4">

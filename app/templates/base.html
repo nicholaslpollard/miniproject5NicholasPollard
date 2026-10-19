@@ -11,13 +11,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="d-flex flex-column min-vh-100">
-    {# Each entry is (endpoint, label). The current page is highlighted. #}
-    {% set nav_items = [
-        ("main.index", "Home"),
-        ("main.about", "About"),
-        ("main.features", "Features"),
-        ("main.help_page", "Help"),
-    ] %}
+    {# Render one navigation link, highlighting it when it is the current page. #}
+    {% macro nav_link(endpoint, label) %}
+    <li class="nav-item">
+        {% if request.endpoint == endpoint %}
+        <a class="nav-link active" aria-current="page"
+           href="{{ url_for(endpoint) }}">{{ label }}</a>
+        {% else %}
+        <a class="nav-link" href="{{ url_for(endpoint) }}">{{ label }}</a>
+        {% endif %}
+    </li>
+    {% endmacro %}
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('main.index') }}">Task Tracker</a>
@@ -27,23 +32,44 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto">
-                    {% for endpoint, label in nav_items %}
+                <ul class="navbar-nav me-auto" id="publicNav">
+                    {{ nav_link("main.index", "Home") }}
+                    {{ nav_link("main.about", "About") }}
+                    {{ nav_link("main.features", "Features") }}
+                    {{ nav_link("main.help_page", "Help") }}
+                </ul>
+                <ul class="navbar-nav align-items-lg-center" id="accountNav">
+                    {% if g.user %}
+                    {{ nav_link("main.dashboard", "Dashboard") }}
                     <li class="nav-item">
-                        {% if request.endpoint == endpoint %}
-                        <a class="nav-link active" aria-current="page"
-                           href="{{ url_for(endpoint) }}">{{ label }}</a>
-                        {% else %}
-                        <a class="nav-link" href="{{ url_for(endpoint) }}">{{ label }}</a>
-                        {% endif %}
+                        <span class="navbar-text px-lg-2">Signed in as {{ g.user["username"] }}</span>
                     </li>
-                    {% endfor %}
+                    <li class="nav-item py-2 py-lg-0">
+                        <form action="{{ url_for('auth.logout') }}" method="post" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-outline-light btn-sm">Log Out</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    {{ nav_link("auth.register", "Register") }}
+                    {{ nav_link("auth.login", "Login") }}
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
 
     <main class="container my-4 flex-grow-1">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show"
+             role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endwith %}
+
         {% block content %}{% endblock %}
     </main>
 

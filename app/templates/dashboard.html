@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1 class="page-heading mb-4">Welcome, {{ g.user["username"] }}!</h1>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h2 class="h5 card-title">Your Tasks</h2>
+                <p class="card-text">
+                    Task management will be added in the next development stage. Once it is
+                    available, this dashboard will list your tasks and let you add, edit,
+                    complete, and delete them.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header fw-semibold">Account</div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Username:</strong> {{ g.user["username"] }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ g.user["email"] }}</li>
+                <li class="list-group-item"><strong>Member since:</strong> {{ g.user["created_at"][:10] }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

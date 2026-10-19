@@ -37,3 +37,8 @@
         border-bottom: none;
     }
 }
+
+/* Login and registration cards. */
+.auth-card {
+    border-top: 4px solid var(--bs-primary);
+}
