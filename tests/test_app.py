@@ -19,14 +19,6 @@ PUBLIC_PAGES = [
 ]
 
 
-@pytest.fixture
-def client():
-    """Create a test client for the application."""
-    app = create_app({"TESTING": True})
-    with app.test_client() as client:
-        yield client
-
-
 def nav_links(html):
     """Return the href values of the links inside the main navigation menu."""
     nav = re.search(r'<div class="collapse navbar-collapse" id="mainNav">(.*?)</div>',
