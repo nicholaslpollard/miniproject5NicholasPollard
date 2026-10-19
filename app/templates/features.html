@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Features{% endblock %}
+
+{% block content %}
+<h1 class="page-heading mb-3">Features</h1>
+<div class="alert alert-info" role="alert">
+    These features are planned and are being added in stages. They are not yet
+    available in the current version of the application.
+</div>
+
+{% set features = [
+    ("User Accounts", "Register for an account, log in, and log out. Passwords will be stored securely using hashing."),
+    ("Create Tasks", "Add a task with a title, an optional description, and an optional due date."),
+    ("View Your Tasks", "See a list of your own tasks. Each user's tasks are kept separate and private."),
+    ("Edit Tasks", "Update a task's details as plans change."),
+    ("Track Progress", "Mark tasks as complete or incomplete to see what still needs attention."),
+    ("Delete Tasks", "Remove tasks you no longer need, with a confirmation step to prevent mistakes."),
+] %}
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for name, description in features %}
+    <div class="col">
+        <div class="card h-100 shadow-sm info-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h2 class="h5 card-title mb-0">{{ name }}</h2>
+                    <span class="badge text-bg-secondary">Planned</span>
+                </div>
+                <p class="card-text">{{ description }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

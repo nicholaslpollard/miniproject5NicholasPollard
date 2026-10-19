@@ -5,6 +5,35 @@
     letter-spacing: 0.5px;
 }
 
+/* Make the current page stand out in the navigation bar. */
+.navbar-dark .nav-link.active {
+    font-weight: 600;
+    border-bottom: 2px solid #fff;
+}
+
 .hero {
     border-left: 6px solid var(--bs-primary);
+}
+
+.page-heading {
+    border-bottom: 3px solid var(--bs-primary);
+    display: inline-block;
+    padding-bottom: 0.25rem;
+}
+
+/* Subtle lift on informational cards. */
+.info-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* On small screens the collapsed menu reads better without the underline. */
+@media (max-width: 991.98px) {
+    .navbar-dark .nav-link.active {
+        border-bottom: none;
+    }
 }

@@ -13,3 +13,21 @@ bp = Blueprint("main", __name__)
 def index():
     """Display the homepage."""
     return render_template("index.html")
+
+
+@bp.route("/about")
+def about():
+    """Display information about the purpose of the application."""
+    return render_template("about.html")
+
+
+@bp.route("/features")
+def features():
+    """Display the planned task-management features."""
+    return render_template("features.html")
+
+
+@bp.route("/help")
+def help_page():
+    """Display instructions for using the application."""
+    return render_template("help.html")

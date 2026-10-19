@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<h1 class="page-heading mb-4">About the Task Tracker</h1>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <p class="lead">
+            The Personal Task Tracker is designed to help individuals keep their
+            day-to-day responsibilities organized without the clutter of larger
+            project-management tools.
+        </p>
+        <p>
+            Many people track tasks on sticky notes, in scattered text files, or
+            simply in their heads. This application aims to give each user a single,
+            private place to record what needs to be done, when it is due, and
+            whether it has been completed.
+        </p>
+        <h2 class="h4 mt-4">Project Goals</h2>
+        <ul>
+            <li>Keep the interface clean, simple, and easy to use on any device.</li>
+            <li>Give each user a private list of tasks tied to their own account.</li>
+            <li>Store information reliably in a lightweight database.</li>
+            <li>Follow secure practices for handling passwords and user sessions.</li>
+        </ul>
+    </div>
+    <div class="col-lg-4">
+        <div class="card shadow-sm">
+            <div class="card-header fw-semibold">Built With</div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Python 3.12</li>
+                <li class="list-group-item">Flask</li>
+                <li class="list-group-item">Jinja2 templates</li>
+                <li class="list-group-item">SQLite</li>
+                <li class="list-group-item">Bootstrap 5</li>
+            </ul>
+        </div>
+        <p class="small text-muted mt-3">
+            Created by Nicholas Pollard for INF601 - Advanced Programming in Python.
+        </p>
+    </div>
+</div>
+{% endblock %}

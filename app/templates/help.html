@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Help{% endblock %}
+
+{% block content %}
+<h1 class="page-heading mb-3">Help</h1>
+<p class="lead">
+    This page explains how the Personal Task Tracker will be used once its
+    features are complete.
+</p>
+<div class="alert alert-info" role="alert">
+    Account and task features are still in development. The steps below describe
+    the intended workflow.
+</div>
+
+<h2 class="h4 mt-4">Getting Started</h2>
+<ol class="list-group list-group-numbered mb-4">
+    <li class="list-group-item">
+        <span class="fw-semibold">Create an account</span> with a username and password.
+    </li>
+    <li class="list-group-item">
+        <span class="fw-semibold">Log in</span> to reach your personal task list.
+    </li>
+    <li class="list-group-item">
+        <span class="fw-semibold">Add tasks</span> with a title, description, and due date.
+    </li>
+    <li class="list-group-item">
+        <span class="fw-semibold">Update tasks</span> by editing them or marking them complete.
+    </li>
+    <li class="list-group-item">
+        <span class="fw-semibold">Log out</span> when you are finished to end your session.
+    </li>
+</ol>
+
+<h2 class="h4">Frequently Asked Questions</h2>
+<div class="accordion mb-4" id="helpFaq">
+    <div class="accordion-item">
+        <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faqPrivacy" aria-expanded="false" aria-controls="faqPrivacy">
+                Can other users see my tasks?
+            </button>
+        </h3>
+        <div id="faqPrivacy" class="accordion-collapse collapse" data-bs-parent="#helpFaq">
+            <div class="accordion-body">
+                No. Each task will belong to a single account, and users will only be able
+                to view and manage their own tasks.
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faqPasswords" aria-expanded="false" aria-controls="faqPasswords">
+                How will my password be stored?
+            </button>
+        </h3>
+        <div id="faqPasswords" class="accordion-collapse collapse" data-bs-parent="#helpFaq">
+            <div class="accordion-body">
+                Passwords will never be stored as plain text. They will be hashed before being
+                saved to the database.
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faqDevices" aria-expanded="false" aria-controls="faqDevices">
+                Can I use the Task Tracker on my phone?
+            </button>
+        </h3>
+        <div id="faqDevices" class="accordion-collapse collapse" data-bs-parent="#helpFaq">
+            <div class="accordion-body">
+                Yes. The layout uses Bootstrap and adjusts to fit desktop, tablet, and mobile
+                screens.
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    Want to know what is coming next? See the
+    <a href="{{ url_for('main.features') }}">Features</a> page.
+</p>
+{% endblock %}

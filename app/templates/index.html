@@ -1,12 +1,54 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Personal Task Tracker{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="p-5 mb-4 bg-body-tertiary rounded-3 hero">
+<div class="p-4 p-md-5 mb-4 bg-body-tertiary rounded-3 hero">
     <h1 class="display-5 fw-bold">Personal Task Tracker</h1>
-    <p class="col-md-8 fs-5">
-        Keep track of your to-dos, deadlines, and progress in one simple place.
+    <p class="col-lg-8 fs-5">
+        A simple web application for organizing personal to-dos, deadlines, and
+        progress in one place. It is being built with Flask, Jinja2, SQLite, and
+        Bootstrap as part of INF601 - Advanced Programming in Python.
     </p>
+    <p class="text-muted mb-0">
+        The application is under active development. User accounts and task
+        management will be added in upcoming versions.
+    </p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm info-card">
+            <div class="card-body">
+                <h2 class="h5 card-title">About the Project</h2>
+                <p class="card-text">Learn why this application exists and what it aims to do.</p>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+                <a href="{{ url_for('main.about') }}" class="btn btn-outline-primary">Read more</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm info-card">
+            <div class="card-body">
+                <h2 class="h5 card-title">Planned Features</h2>
+                <p class="card-text">See the task-management features planned for the application.</p>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+                <a href="{{ url_for('main.features') }}" class="btn btn-outline-primary">View features</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm info-card">
+            <div class="card-body">
+                <h2 class="h5 card-title">Getting Help</h2>
+                <p class="card-text">Find out how the Task Tracker will be used once it is complete.</p>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+                <a href="{{ url_for('main.help_page') }}" class="btn btn-outline-primary">Get help</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
